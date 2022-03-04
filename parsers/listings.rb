@@ -1,6 +1,10 @@
+# initialize nokogiri
 nokogiri = Nokogiri.HTML(content)
+
+# get the group of listings
 listings = nokogiri.css('ul.b-list__items_nofooter li.s-item')
 
+# loop through the listings
 listings.each do |listing|
     # initialize an empty hash
     product = {}
@@ -18,6 +22,16 @@ listings.each do |listing|
     # specify the collection where this record will be stored
     product['_collection'] = "listings"
 
-    # save the product to the job’s outputs
+    # save the product to the outputs.
     outputs << product
+
+    # enqueue more pages to the scrape job
+    pages << {
+        url: product['url'],
+        page_type: 'details',
+        vars: {  # adding vars to this page
+            title: product['title'],
+            price: product['price']
+        }
+      }
 end
