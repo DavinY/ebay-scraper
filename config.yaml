@@ -1,4 +1,4 @@
-eeder:
+seeder:
   file: ./seeder/seeder.rb
   disabled: false
 parsers:
