@@ -11,6 +11,8 @@ parsers:
 exporters:
  - file: ./exporters/products_last10_json.yaml
    disabled: false
-# Add the following lines below...
  - file: ./exporters/products_json.yaml
    disabled: false
+finisher:
+  file: ./finisher/finisher.rb
+  disabled: false
